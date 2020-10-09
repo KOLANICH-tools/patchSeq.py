@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=62.2", "wheel", "setuptools_scm[toml]>=3.4.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "patchSeq"
+authors = [{name = "KOLANICH"}]
+description = "A CLI tool for rewriting history by splitting, merging, reordering patches sequences"
+readme = "ReadMe.md"
+keywords = ["python", "git", "CI", "bleeding edge"]
+license = {text = "Unlicense"}
+classifiers = [
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3",
+	"Development Status :: 4 - Beta",
+	"Environment :: Other Environment",
+	"Intended Audience :: Developers",
+	"License :: Public Domain",
+	"Operating System :: OS Independent",
+	"Topic :: Software Development :: Libraries :: Python Modules",
+]
+urls = {Homepage = "https://codeberg.org/KOLANICH-tools/patchSeq.py"}
+requires-python = ">=3.4"
+dependencies = [
+	"fsutilz @ https://codeberg.org/prebuilder/fsutilz", # Unlicense
+	"unidiff @ https://github.com/matiasb/python-unidiff", # MIT
+]
+dynamic = ["version"]
+
+[project.scripts]
+patchSeq = "patchSeq.__main__:PatchSeqCLI.run"
+
+[tool.setuptools]
+zip-safe = true
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = [
+	"patchSeq",
+	"patchSeq.*",
+	"patchSeq.passes.*",
+	"patchSeq.utils.*",
+	"patchSeq.keepingStrategies.*",
+]
+namespaces = false
+
+[tool.setuptools_scm]
